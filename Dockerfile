@@ -20,4 +20,4 @@ COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 
 COPY --from=builder /src/out /app
 
-CMD /app
+CMD ["/app"]
