@@ -8,8 +8,9 @@ RUN apk --no-cache add build-base \
   ca-certificates \
   tzdata
 
-RUN go build -a -ldflags="-extldflags=-static -linkmode external" -o out ./...
+RUN go build -a -ldflags="-w -s -extldflags=-static -linkmode external" -o out ./...
 RUN file out
+RUN stat out
 
 FROM scratch
 
