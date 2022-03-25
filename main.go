@@ -40,22 +40,15 @@ func main() {
 	wtime := doc.Find("span#ct").Text()
 	wdate := doc.Find("span#ctdat").Text()
 
-	fmt.Println(wtime)
-	fmt.Println(wdate)
-
 	t, err := time.Parse("Monday, 02 January 2006 15:04:05", wdate+" "+wtime)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(t)
-
 	dk, err := time.LoadLocation("Europe/Berlin")
 	if err != nil {
 		log.Fatalln(err)
 	}
-
-	fmt.Println(t.In(dk))
 
 	os.Remove("./db")
 	db, err := sql.Open("sqlite3", "./db")
@@ -95,10 +88,11 @@ func main() {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		fmt.Println(t)
 	}
 	err = rows.Err()
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	fmt.Println("Success!")
 }
